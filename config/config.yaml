@@ -1,0 +1,12 @@
+#data_folder: /lustre/home/bolner/ASSEMBLED_GENOMES/
+#functions_path: /lustre/home/bolner/PROJECTS/numts_refactored/workflow/scripts
+genomes: config/genomes.tsv
+mtc_genomes: config/mtc_genomes.tsv
+
+#ref_genome: "/lustrehome/bolner/work/data/REFERENCE_GENOMES/PIG/GCF_000003025.6_Sscrofa11.1_genomic.fna"
+#ref_genome_index: "/lustrehome/bolner/work/data/REFERENCE_GENOMES/PIG/GCF_000003025.6_Sscrofa11.1_genomic.fna.fai"
+
+ref_genomes:
+  Sus_scrofa:
+    assembly_name: Sscrofa11.1
+    assembly_accession: "GCA_000003025.6"
