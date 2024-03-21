@@ -4,22 +4,27 @@ from Bio import SeqIO
 import os
 
 
-def split_multifasta(input, outdir):
-    f = open(input, "r")
-    mf = SeqIO.parse(f, "fasta")
-    for i in mf:
-        id = i.id
-        seq = i.seq
-        output = open(os.path.join(outdir, id + ".fasta"), "w")
-        output.write(">" + str(id) + "\n" + str(seq) + "\n")
-        output.close()
-    f.close()
+def split_multifasta(multifasta, outdir):
+    """
+    This function splits a multifasta in its individual fasta files
+    and saves each fasta in a separate file under the same directory
+    """
+    with open(multifasta, "r") as f:
+        mf = SeqIO.parse(f, "fasta")
+        for i in mf:
+            fasta_id = i.id
+            seq = i.seq
+            with open(os.path.join(outdir, fasta_id + ".fasta"), "w") as output:
+                output.write(">" + str(id) + "\n" + str(seq) + "\n")
+                output.close()
     return ()
 
 
 def maf_to_csv(maf_file, score_threshold=None, csv_outpath=None):
-    # this function takes as input a .maf file and returns a pandas DataFrame containing all of the file's information
-    # maf_file = os.path.abspath(maf_file)
+    """
+    This function takes as input a .maf file
+    and returns a pandas DataFrame containing all of the file's information
+    """
     maf_dict = {
         "score": [],
         "EG2": [],
@@ -77,8 +82,10 @@ def maf_to_csv(maf_file, score_threshold=None, csv_outpath=None):
 
 
 def merge_maf_and_blasttab(mafpath, btpath, outfile=None):
-    # mafpath="data/numt_discovery/lastal/circular_sequence/Sus_scrofa/ASM2165605v1/GCA_021656055.1_ASM2165605v1.maf"
-    # btpath="data/numt_discovery/lastal/circular_sequence/Sus_scrofa/ASM2165605v1/GCA_021656055.1_ASM2165605v1.blasttab"
+    """
+    This function takes as input a maf and its blasttab conversion
+    and merges them in a single pandas DataFrame
+    """
     with open(mafpath, "r+") as f:
         if f.read() == "":
             return ()
@@ -100,16 +107,10 @@ def merge_maf_and_blasttab(mafpath, btpath, outfile=None):
     bt_df = pd.read_csv(btpath, comment="#", sep="\t", header=None)
     bt_df.columns = columns
     columns_to_update_bt = ["query_start", "subject_start"]
-    # columns_to_update_bt = ['query_start', 'query_end', 'subject_start', 'subject_end']
     for col in columns_to_update_bt:
         bt_df[col] = bt_df[col] - 1
     maf_df["score"] = maf_df["score"].astype(int)
-    # maf_df= maf_df.sort_values(by=['score', 'nuc_start' ], ascending=False).reset_index(drop=True)
-    # bt_df = bt_df.sort_values(by=['score_bt','subject_start'], ascending=False).reset_index(drop=True)
     merged_df = pd.merge(maf_df, bt_df, left_index=True, right_index=True)
-    # merged_df = pd.concat([maf_df, bt_df], axis = 1)
-    # merged_df = merged_df.drop(columns='score_bt')
-
     if outfile:
         merged_df.to_csv(outfile, index=False)
     return merged_df
@@ -124,6 +125,11 @@ import numpy as np
 
 
 def plot_region(region_df, save_path=None, consider_strands=True):
+    """
+    This function takes as input the pandas dataframe containing
+    a NUMT region and the coordinates of its NUMT fragments
+    and returns the fragment plot, with sequence identity
+    """
     name = region_df.iloc[0]["region_id"]
     f, ax = plt.subplots()
     sns.set_style("ticks")
@@ -187,6 +193,12 @@ def plot_region(region_df, save_path=None, consider_strands=True):
 
 
 def plot_region_with_identity(region_df, save_path=None, consider_strands=True):
+    """
+    This function takes as input the pandas dataframe containing
+    a NUMT region and the coordinates of its NUMT fragments
+    and returns the fragment plot, with sequence identity
+    """
+
     name = region_df.iloc[0]["region_id"]
     f, ax = plt.subplots()
     sns.set_style("ticks")
@@ -262,14 +274,9 @@ def assign_range_and_plot(
     x_axis_label=None,
     y_axis_label=None,
 ):
-    # split df in ranges and plot the distribution
-
-    # size_ranges = list(range(2000))[0::100]
-    # size_ranges+=list(range(2000, 6000))[0::1000]
-    # size_ranges.append(15000)
-    #
-    # size_ranges_larger = [0,100,250,500,15000]
-    # identity_ranges = [50,60,70,80,90,100]
+    """
+    This function splits a NUMT df in size ranges and plots the distribution
+    """
 
     def get_interval(val, intervals):
         if val == np.nan:
@@ -306,6 +313,11 @@ def assign_range_and_plot(
 
 
 def compute_age_dayama(input_msa, divergence_age):
+    """
+    This function computes the NUMT estimated age using the method by Dayama et al.
+    starting from a multiple sequence alignment and the age upper boundary
+    """
+
     if not os.path.isfile(input_msa):
         return (np.nan, np.nan, np.nan)
     msa = SeqIO.parse(open(input_msa), "fasta")
