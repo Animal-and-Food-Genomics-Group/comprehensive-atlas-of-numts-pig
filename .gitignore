@@ -1,1 +1,6 @@
 .ftpconfig
+resources/
+data/
+.snakemake
+workflow/rules/phylogeny
+workflow/scripts/phylogeny
