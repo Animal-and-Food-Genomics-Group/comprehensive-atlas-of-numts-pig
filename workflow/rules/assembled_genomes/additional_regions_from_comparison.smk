@@ -72,7 +72,6 @@ rule add_additional_seqs_to_original_numts:
     script:
         "../../scripts/assembled_genomes/numt_assembly_comparison/merge_compatible_seqs.py"
 
-
 rule updated_stats:
     input:
         numt_paths=expand(

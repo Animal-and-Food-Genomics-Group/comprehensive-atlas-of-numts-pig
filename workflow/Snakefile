@@ -24,7 +24,8 @@ include: "rules/assembled_genomes/additional_regions_from_reference_to_other_gen
 rule all:
     input:
         #############NUMT COMPARISON ACROSS GENOMES PIPELINE###############
-        #"tables/numts_and_additional_regions/all_genomes_numt_info.csv",
+        "tables/numts_and_additional_regions/all_genomes_numt_info.csv",
+        "tables/genome_comparison/orthologues_matrix.csv"
         ###################################################################
 
         #############NUMT DISCOVERY PIPELINE#################
