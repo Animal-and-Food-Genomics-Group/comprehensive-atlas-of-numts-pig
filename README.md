@@ -34,15 +34,15 @@ The structure of the workflow is the following:
 
 A summary of all rules called in the NUMT discovery pipeline is shown below:
 
-[logo]: https://github.com/matteobolner/comprehensive-atlas-of-numts-pig/blob/main/pipeline_graphs/numt_discovery_summary.svg "Test"
-![alt text][logo]
+[numt_discovery_summary]: https://github.com/matteobolner/comprehensive-atlas-of-numts-pig/blob/main/pipeline_graphs/numt_discovery_summary.svg "Test"
+![alt text][numt_discovery_summary]
 
 The full Direct Acyclyc Graph (DAG) for this part of the pipeline can be found in the pipeline_graphs folder ([link](pipeline_graphs/numt_discovery_complete.svg))
 
 
 A summary of all rules called in the pipeline for NUMT comparison across genomes  is shown below:
 
-[logo]: https://github.com/matteobolner/comprehensive-atlas-of-numts-pig/blob/main/pipeline_graphs/genome_comparison_summary.png "Test"
-![alt text][logo]
+[genome_comparison_summary]: https://github.com/matteobolner/comprehensive-atlas-of-numts-pig/blob/main/pipeline_graphs/genome_comparison_summary.png "Test"
+![alt text][genome_comparison_summary]
 
 The full Direct Acyclyc Graph (DAG) for this part of the pipeline can be found in the pipeline_graphs folder ([link](pipeline_graphs/genome_comparison_complete.svg))
