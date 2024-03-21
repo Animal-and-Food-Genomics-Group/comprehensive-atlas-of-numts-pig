@@ -4,7 +4,7 @@
 [![Code style: snakefmt](https://img.shields.io/badge/code%20style-snakefmt-000000.svg)](https://github.com/snakemake/snakefmt)
 
 Repository including workflow and scripts for the manuscript  
-"A comprehensive atlas of nuclear sequences of mitochondrial origin (NUMT) inserted into the pig genome"
+"**A comprehensive atlas of nuclear sequences of mitochondrial origin (NUMT) inserted into the pig genome**"
 
 For information reach out to [Matteo Bolner](https://github.com/matteobolner) at matteo-dot-bolner2-at-unibo-dot-it
 
