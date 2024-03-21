@@ -1,0 +1,27 @@
+include: "rules/common.smk"
+include: "rules/general.smk"
+
+"""
+Rules for NUMT discovery
+"""
+include: "rules/assembled_genomes/prepare_mtc_consensus.smk"
+include: "rules/assembled_genomes/numt_discovery.smk"
+
+"""
+Rules for NUMT comparison across assembled genomes
+"""
+include: "rules/assembled_genomes/compare_numts_across_genomes.smk"
+include: "rules/assembled_genomes/additional_regions_from_comparison.smk"
+include: "rules/assembled_genomes/additional_regions_from_reference_to_other_genomes.smk"
+
+
+
+rule all:
+    input:
+        #############NUMT COMPARISON ACROSS GENOMES PIPELINE###############
+        #"tables/numts_and_additional_regions/all_genomes_numt_info.csv"
+        ###################################################################
+
+        #############NUMT DISCOVERY PIPELINE#################
+        #"tables/numt_discovery/all_genomes_numt_info.csv"
+        #####################################################

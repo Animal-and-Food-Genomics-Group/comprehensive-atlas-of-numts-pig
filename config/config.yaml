@@ -1,7 +1,8 @@
 #data_folder: /lustre/home/bolner/ASSEMBLED_GENOMES/
-#functions_path: /lustre/home/bolner/PROJECTS/numts_refactored/workflow/scripts
+functions_path: workflow/scripts
 genomes: config/genomes.tsv
 mtc_genomes: config/mtc_genomes.tsv
+mtc_genomes_for_dayama: config/mtc_genomes_for_dayama.tsv
 
 #ref_genome: "/lustrehome/bolner/work/data/REFERENCE_GENOMES/PIG/GCF_000003025.6_Sscrofa11.1_genomic.fna"
 #ref_genome_index: "/lustrehome/bolner/work/data/REFERENCE_GENOMES/PIG/GCF_000003025.6_Sscrofa11.1_genomic.fna.fai"

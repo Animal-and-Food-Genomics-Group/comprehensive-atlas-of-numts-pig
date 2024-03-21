@@ -98,37 +98,3 @@ rule prepare_numt_region_bed:
         pd.read_csv(input.numts_table)[
             ["chromosome_code", "region_start", "region_end", "region_id"]
         ].drop_duplicates().to_csv(output.bed, sep="\t", index=False, header=None)
-
-
-rule prepare_numt_region_1000_bp_flanking_seqs_bed:
-    input:
-        numts_table="results/numt_discovery/numts/{species}/{assembly_name}/{assembly_accession}_{assembly_name}_numts.csv",
-    output:
-        bed="data/numt_discovery/region_flanking_sequences/1000bp/{species}/{assembly_name}/{assembly_accession}_{assembly_name}.bed",
-    run:
-        tempdf = pd.read_csv(input.numts_table)
-        tempdf["left_start"] = (tempdf["region_start"] - 1001).astype(int)
-        tempdf["left_start"] = tempdf["left_start"].where(tempdf["left_start"] >= 0, 0)
-        tempdf["left_end"] = (tempdf["region_start"] - 1).astype(int)
-        tempdf["left_end"] = tempdf["left_end"].where(tempdf["left_end"] >= 0, 0)
-        tempdf["right_start"] = (tempdf["region_end"] + 1).astype(int)
-        tempdf["right_start"] = tempdf["right_start"].where(
-            tempdf["left_start"] <= tempdf["nuc_srcsize"], tempdf["nuc_srcsize"]
-        )
-        tempdf["right_end"] = (tempdf["region_end"] + 1001).astype(int)
-        tempdf["right_end"] = tempdf["right_end"].where(
-            tempdf["right_end"] <= tempdf["nuc_srcsize"], tempdf["nuc_srcsize"]
-        )
-        left_df = tempdf[
-            ["chromosome_code", "left_start", "left_end", "region_id"]
-        ].drop_duplicates()
-        left_df["region_id"] = left_df["region_id"] + "_left"
-        right_df = tempdf[
-            ["chromosome_code", "right_start", "right_end", "region_id"]
-        ].drop_duplicates()
-        right_df["region_id"] = right_df["region_id"] + "_right"
-        right_df=right_df[["chromosome_code","right_start","right_end","region_id"]]
-        right_df.columns = [''] * len(right_df.columns)
-        left_df.columns = [''] * len(left_df.columns)
-        outdf = pd.concat([left_df, right_df])
-        outdf.to_csv(output.bed, sep="\t", index=False, header=None)
