@@ -1,5 +1,5 @@
 # comprehensive-atlas-of-numts-pig
-
+[![Snakemake](https://img.shields.io/badge/snakemake-≥7.19.0-brightgreen.svg)](https://snakemake.github.io)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Code style: snakefmt](https://img.shields.io/badge/code%20style-snakefmt-000000.svg)](https://github.com/snakemake/snakefmt)
 
