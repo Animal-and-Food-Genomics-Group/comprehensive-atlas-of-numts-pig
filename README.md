@@ -6,6 +6,8 @@
 Repository including workflow and scripts for the manuscript  
 "A comprehensive atlas of nuclear sequences of mitochondrial origin (NUMT) inserted into the pig genome"
 
+For information reach out to [Matteo Bolner](https://github.com/matteobolner) at matteo.bolner2@unibo.it
+
 ## Workflow description
 This workflow was built using Snakemake (https://snakemake.github.io/).
 The structure of the workflow is the following:
