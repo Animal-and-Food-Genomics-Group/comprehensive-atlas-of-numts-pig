@@ -6,3 +6,4 @@
 Repository including workflow and scripts for "A comprehensive atlas of nuclear sequences of mitochondrial origin (NUMT) inserted into the pig genome"
 
 [logo]: https://github.com/matteobolner/comprehensive-atlas-of-numts-pig/blob/main/pipeline_graphs/numt_discovery_summary.svg "Test"
+![alt text][logo]
